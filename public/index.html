@@ -5,9 +5,42 @@
     <meta name="viewport" content="width=device-width,
      initial-scale=1.0">
      <link rel="stylesheet" href="/src/output.css">
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css">
     <title>Document</title>
+    <style>
+        body {
+            transition: background-color 0.5s ease;
+        }
+    </style>
 </head>
-<body>
-    
+<body class="h-screen flex items-center justify-center">
+    <h1 class="flex items-center justify-center font-bold text-2xl">Background Color Generator</h1> 
+    <div>
+
+        <button id="generateFromArray" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-4 ml-5"> Generate From Array</button>
+        <button id="generateFromHex" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mr-4"> Generate From Hex</button>
+    </div>
+
+    <script>
+        //array of colors
+        const colorArray = [ "red", "blue", "green", "orange", "yellow", "brown", "purple", "pink", "black", "white"]
+
+        // functions to generate colors
+        function generateFromArray(){
+            const randomIndex = Math.floor (Math.random() * colorArray.length)
+            const selectedColor = colorArray[randomIndex]
+            document.body.style.backgroundColor = selectedColor
+        }
+        
+        //function to generate colors from hex values
+        function generateFromHex(){
+            const randomColor ='#' + Math.floor(Math.random()*16777215).toString(16);
+            document.body.style.backgroundColor = randomColor
+        }
+
+        //event listeners for buttons
+        document.getElementById("generateFromArray").addEventListener("click", generateFromArray);
+        document.getElementById("generateFromHex").addEventListener("click", generateFromHex);
+    </script>
 </body>
 </html>
